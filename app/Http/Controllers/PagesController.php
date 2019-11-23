@@ -94,6 +94,14 @@ class PagesController extends Controller
             ->with('plans_y', Plan::where('type', 'Year')->orderBy('price')->get());;
     }
 
+    public function history() {
+
+        $posts = BufferPosting::paginate(10);
+
+        return view('pages.history')->with('posts', $posts);
+
+    }
+
     public function confirmation()
     {
         $user = User::find(Auth::id());
